@@ -41,16 +41,20 @@ function validarGeneral(e){
     // prevenir el actualizar del submit
     e.preventDefault();
     console.log('desde la funcion validar general')
+    let alerta = document.querySelector('#msjAlerta');
     if(campoRequerido(campoCodigo) && 
     campoRequerido(campoProducto) &&
     campoRequerido(campoDescripcion) &&
     validarNumeros(campoCantidad) &&
     validarURL(campoURL)){
-        console.log('los datos estan listos para ser enviados')
+        console.log('los datos estan listos para ser enviados');
+        alerta.className = 'alert alert-danger my-5 d-none';
     }else{
-        console.log('los datos estan mal')
+        console.log('los datos estan mal');
+        alerta.className = 'alert alert-danger my-5';
     }
 }
+
 
 //traigo el elemento que necesito del html
 let campoCodigo = document.querySelector('#codigo');
