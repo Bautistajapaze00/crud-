@@ -8,7 +8,8 @@ let campoDescripcion = document.querySelector('#descripcion');
 let campoCantidad =  document.querySelector('#cantidad');
 let campoURL =  document.querySelector('#url');
 let formularioProducto = document.querySelector('#formProducto');
-let listaProductos = [];
+// si hay algo en localstorage quiero guardarlo en el arreglo sino quiero que sea un arreglo vacio
+let listaProductos = JSON.parse(localStorage.getItem('arregloProductosKey')) || [];
 
 
 //asociar un evento a un elemento del html
@@ -36,6 +37,8 @@ function crearProducto(){
     console.log(listaProductos);
     //limpiar el formulario
     limpiarFormulario();
+    //guardar el arreglo de productos dentro de localstorage
+    guardarLocalStorage();
 }
 
 function limpiarFormulario(){
@@ -45,4 +48,8 @@ function limpiarFormulario(){
     campoCodigo.className = 'form-control';
     campoProducto.className = 'form-control';
     // Tarea modificar todos los className del formulario
+}
+
+function guardarLocalStorage(){
+    localStorage.setItem('arregloProductosKey', JSON.stringify(listaProductos) )
 }
