@@ -105,7 +105,7 @@ function crearFila(producto) {
     <td>${producto.cantidad}</td>
     <td>${producto.url}</td>
     <td>
-      <button class="btn btn-warning">Editar</button>
+      <button class="btn btn-warning" onclick='prepararEdicionProducto()'>Editar</button>
       <button class="btn btn-danger">Borrar</button>
     </td>
   </tr>`;
@@ -116,4 +116,8 @@ function cargaInicial(){
         //crear las filas
         listaProductos.forEach((itemProducto)=>{crearFila(itemProducto)});
     }
+}
+
+window.prepararEdicionProducto = function (){
+    console.log('desde editar')
 }
