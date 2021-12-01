@@ -119,7 +119,7 @@ function crearFila(producto) {
     <td>${producto.url}</td>
     <td>
       <button class="btn btn-warning" onclick='prepararEdicionProducto("${producto.codigo}")'>Editar</button>
-      <button class="btn btn-danger">Borrar</button>
+      <button class="btn btn-danger" onclick='borrarProducto("${producto.codigo}")'>Borrar</button>
     </td>
   </tr>`;
 }
@@ -175,4 +175,23 @@ function modificarProducto(){
 function borrarTabla(){
   let tbodyProductos = document.querySelector('#tablaProductos');
   tbodyProductos.innerHTML=''; 
+}
+
+window.borrarProducto = function (codigo){
+  // console.log(codigo);
+  //buscar posicion del elemento en el arreglo y borrarlo
+  let arregloNuevo = listaProductos.filter((item)=>{return item.codigo != codigo});
+  // console.log(arregloNuevo);
+  //actualizar el arreglo original y el localstorage
+  listaProductos = arregloNuevo;
+  guardarLocalStorage();
+  //actualizar la tabla
+  borrarTabla();
+  cargaInicial();
+  //mostrar cartel al usuario
+  Swal.fire(
+    "Producto eliminado",
+    "Su producto fue correctamente eliminado del sistema",
+    "success"
+  );
 }
