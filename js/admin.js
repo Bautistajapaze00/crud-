@@ -17,6 +17,8 @@ let formularioProducto = document.querySelector("#formProducto");
 let listaProductos =
   JSON.parse(localStorage.getItem("arregloProductosKey")) || [];
 let productoExistente = false; // si productoExistente es false quiero crear, si es true entonces quiero modificar un producto existe.
+let btnNuevo = document.querySelector('#btnNuevo');
+
 
 //asociar un evento a un elemento del html
 campoCodigo.addEventListener("blur", () => {
@@ -35,6 +37,9 @@ campoURL.addEventListener("blur", () => {
   validarURL(campoURL);
 });
 formularioProducto.addEventListener("submit", guardarProducto);
+btnNuevo.addEventListener('click',limpiarFormulario);
+
+
 
 // llamo a carga inicial
 cargaInicial();
@@ -96,6 +101,8 @@ function limpiarFormulario() {
   campoCodigo.className = "form-control";
   campoProducto.className = "form-control";
   // Tarea modificar todos los className del formulario
+  //resetear la variable booleana
+  productoExistente=false;
 }
 
 function guardarLocalStorage() {
@@ -155,6 +162,14 @@ function modificarProducto(){
   //actualizar la tabla
   borrarTabla();
   cargaInicial();
+  //mostrar un cartel al usuario
+  Swal.fire(
+    "Producto modificado",
+    "Su producto fue correctamente actualizado",
+    "success"
+  );
+  //limpiar el formulario
+  limpiarFormulario();
 }
 
 function borrarTabla(){
